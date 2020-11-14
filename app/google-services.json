@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "385902496967",
+    "firebase_url": "https://mantapkali-a2f45.firebaseio.com",
+    "project_id": "mantapkali-a2f45",
+    "storage_bucket": "mantapkali-a2f45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385902496967:android:b66c11653cad6aa3eec2e2",
+        "android_client_info": {
+          "package_name": "com.example.uangmantapkali"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385902496967-usnllh3h3n2s1s8qhee16rjuh4kch30i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtbVn9S94f7tm2n-JSJ-QLi55acWI7XXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385902496967-usnllh3h3n2s1s8qhee16rjuh4kch30i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
