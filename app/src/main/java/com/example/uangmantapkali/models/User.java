@@ -2,30 +2,40 @@ package com.example.uangmantapkali.models;
 
 public class User {
 
-    private String email;
-    private String nama;
+    private String name;
+    private String phone;
+    private String dateOfBirth;
 
     public User() {
     }
 
-    public User(String email, String nama) {
-        this.email = email;
-        this.nama = nama;
+    public User(String name, String phone, String dateOfBirth) {
+        this.name = name;
+        this.phone = phone;
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNama() {
-        return nama;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }
