@@ -1,6 +1,5 @@
 package com.example.uangmantapkali.ui;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -11,29 +10,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.uangmantapkali.R;
 import com.example.uangmantapkali.models.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -111,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
             if(passwordConfirm.getText().toString().isEmpty() || passwordConfirm.getText().toString().equals(password.getText().toString())) {
-                password.setError("Password Confirmation is wrong");
+                passwordConfirm.setError("Password Confirmation is wrong");
                 return;
             }
 
@@ -163,6 +151,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             edit.apply();
 
                                             finish();
+                                            LoginActivity.fa.finish();
                                             Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                                             startActivity(intent);
                                         } else {
