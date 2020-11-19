@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
                 password.setError("Password cannot be empty");
                 return;
             }
-            if(passwordConfirm.getText().toString().isEmpty() || passwordConfirm.getText().toString().equals(password.getText().toString())) {
+            if(passwordConfirm.getText().toString().isEmpty() || !passwordConfirm.getText().toString().equals(password.getText().toString())) {
                 passwordConfirm.setError("Password Confirmation is wrong");
                 return;
             }
