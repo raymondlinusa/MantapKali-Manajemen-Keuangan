@@ -161,6 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                     Toast.LENGTH_SHORT).show();
                                             progress.setVisibility(View.GONE);
                                             password.setText("");
+                                            passwordConfirm.setText("");
                                         }
                                     });
                         }
