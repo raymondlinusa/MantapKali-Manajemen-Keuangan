@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.uangmantapkali.R;
 import com.example.uangmantapkali.models.User;
+import com.example.uangmantapkali.utilities.TextValidation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private TextValidation validation;
     private SharedPreferences session;
 
     @Override
@@ -51,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         myCalendar = Calendar.getInstance();
+        validation = new TextValidation();
         session = getSharedPreferences("user", Context.MODE_PRIVATE);
 
         name = findViewById(R.id.editTextName);
@@ -94,8 +97,16 @@ public class RegisterActivity extends AppCompatActivity {
                 email.setError("Email cannot be empty");
                 return;
             }
+            if(!validation.isValidEmail(email.getText().toString())) {
+                email.setError("Invalid email format");
+                return;
+            }
             if(password.getText().toString().isEmpty()) {
                 password.setError("Password cannot be empty");
+                return;
+            }
+            if(password.getText().toString().length() < 6) {
+                password.setError("Password must be above 6 characters");
                 return;
             }
             if(passwordConfirm.getText().toString().isEmpty() || !passwordConfirm.getText().toString().equals(password.getText().toString())) {
@@ -116,24 +127,27 @@ public class RegisterActivity extends AppCompatActivity {
                             db.collection("users")
                                     .document(user.getUid())
                                     .get()
-                                    .addOnCompleteListener(task1 -> {
-                                        if (task1.isSuccessful()) {
-                                            SharedPreferences.Editor edit = session.edit();
-                                            edit.clear();
-                                            edit.putString("name", task1.getResult().get("name").toString());
-                                            edit.apply();
+                                    .addOnSuccessListener(documentSnapshot -> {
+                                        User user1 = documentSnapshot.toObject(User.class);
+                                        SharedPreferences.Editor edit = session.edit();
+                                        edit.clear();
+                                        edit.putString("name", user1.getName());
+                                        edit.apply();
 
-                                            finish();
-                                            Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                                            startActivity(intent);
-                                        } else {
-                                            Toast.makeText(RegisterActivity.this, "No data.",
-                                                    Toast.LENGTH_SHORT).show();
-                                            progress.setVisibility(View.GONE);
-                                            mAuth.signOut();
-                                        }
+                                        finish();
+                                        LoginActivity.fa.finish();
+                                        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                                        startActivity(intent);
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(RegisterActivity.this, "No data.",
+                                                Toast.LENGTH_SHORT).show();
+                                        progress.setVisibility(View.GONE);
+                                        mAuth.signOut();
                                     });
+                            return;
                         } else {
+                            Log.d(TAG, "BUAT USER BARU");
                             mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                                     .addOnCompleteListener(result -> {
                                         if (result.isSuccessful()) {
@@ -156,7 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             startActivity(intent);
                                         } else {
                                             // If sign in fails, display a message to the user.
-                                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                            Log.d(TAG, "signInWithEmail:failure", result.getException());
                                             Toast.makeText(RegisterActivity.this, "Register failed.",
                                                     Toast.LENGTH_SHORT).show();
                                             progress.setVisibility(View.GONE);

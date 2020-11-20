@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.uangmantapkali.R;
 import com.example.uangmantapkali.models.User;
+import com.example.uangmantapkali.utilities.TextValidation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private SharedPreferences session;
+    private TextValidation validation;
     public static Activity fa;
 
     @Override
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         fa = this;
+        validation = new TextValidation();
         session = getSharedPreferences("user", Context.MODE_PRIVATE);
 
         email = findViewById(R.id.editTextEmail);
@@ -59,8 +62,16 @@ public class LoginActivity extends AppCompatActivity {
                 email.setError("Email cannot be empty");
                 return;
             }
+            if(!validation.isValidEmail(email.getText().toString())) {
+                email.setError("Invalid email format");
+                return;
+            }
             if(password.getText().toString().isEmpty()) {
                 password.setError("Password cannot be empty");
+                return;
+            }
+            if(password.getText().toString().length() < 6) {
+                password.setError("Password must be above 6 characters");
                 return;
             }
 
