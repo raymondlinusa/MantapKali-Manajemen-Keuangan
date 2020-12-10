@@ -25,4 +25,8 @@
     <string name="menu_income">Pemasukan</string>
     <string name="menu_outcome">Pengeluaran</string>
     <string name="menu_profile">Profile</string>
+
+    <string name="profile_edit_akun">Edit Akun</string>
+    <string name="profile_setting">Setting</string>
+    <string name="profile_about">About</string>
 </resources>

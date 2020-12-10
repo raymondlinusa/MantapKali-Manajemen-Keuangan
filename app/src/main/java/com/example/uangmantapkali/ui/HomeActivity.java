@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.uangmantapkali.R;
 import com.example.uangmantapkali.ui.fragment.homeFragment;
@@ -41,6 +44,15 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavBar);
         floatingActionButton = findViewById(R.id.fabTransaksi);
         bottomNavigationView.setBackgroundColor(0);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplication(), "FAB di klik", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), AddTransaksiActivity.class);
+                startActivity(intent);
+            }
+        });
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
         bottomMenu();
