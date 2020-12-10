@@ -29,4 +29,15 @@
     <string name="profile_edit_akun">Edit Akun</string>
     <string name="profile_setting">Setting</string>
     <string name="profile_about">About</string>
+
+    <string name="add_transaksi">Add Record</string>
+    <string name="add_transaksi_tanggal">11 DEC 2020</string>
+    <string name="add_transaksi_dompet">Dompet 1</string>
+    <string name="add_transaksi_deskripsi">Deskripsi</string>
+    <string name="add_transaksi_harga">Harga</string>
+    <string name="add_transaksi_cancel">CANCEL</string>
+    <string name="add_transaksi_save">SAVE</string>
+    <string name="add_transaksi_in">Pemasukan</string>
+    <string name="add_transaksi_out">Pengeluaran</string>
+
 </resources>

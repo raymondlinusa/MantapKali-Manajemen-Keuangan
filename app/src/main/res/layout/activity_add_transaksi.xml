@@ -1,10 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/add_transaksi_bg"
     tools:context=".ui.AddTransaksiActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_transaksi"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:background="@color/light_lblue"
+        />
+    <androidx.appcompat.widget.AppCompatToggleButton
+        android:id="@+id/btnJenisTransaksi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="@string/add_transaksi_in"
+        android:textOn="@string/add_transaksi_out"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatToggleButton
+            android:id="@+id/btnDompet"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textOff="@string/add_transaksi_dompet"
+            />
+        <androidx.appcompat.widget.AppCompatToggleButton
+            android:id="@+id/btnTanggal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textOff="@string/add_transaksi_tanggal"/>
+    </LinearLayout>
+    <EditText
+        android:id="@+id/txtDeskripsi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/add_transaksi_deskripsi"
+        android:inputType="text"
+        android:textColor="@color/dark_blue" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/txtHarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/add_transaksi_harga"
+        android:inputType="number"
+        android:textColor="@color/dark_blue"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right">
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:text="@string/add_transaksi_cancel"
+            />
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light_green"
+            android:text="@string/add_transaksi_save"
+            />
+    </LinearLayout>
+
+</LinearLayout>

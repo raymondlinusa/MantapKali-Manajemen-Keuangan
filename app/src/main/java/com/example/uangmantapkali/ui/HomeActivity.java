@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
 
-//    private Button logout;
+    //    private Button logout;
     private BottomNavigationView bottomNavigationView;
     private FloatingActionButton floatingActionButton;
 
@@ -48,7 +48,6 @@ public class HomeActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplication(), "FAB di klik", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), AddTransaksiActivity.class);
                 startActivity(intent);
             }
