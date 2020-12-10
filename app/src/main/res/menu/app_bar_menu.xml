@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuHome"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/menu_home"/>
+
+    <item
+        android:id="@+id/menuIncome"
+        android:icon="@drawable/ic_baseline_trending_down_24"
+        android:title="@string/menu_income"/>
+
+    <item
+        android:id="@+id/menuPlaceholder"
+        android:title=""
+        android:enabled="false"/>
+
+    <item
+        android:id="@+id/menuOutcome"
+        android:icon="@drawable/ic_baseline_trending_up_24"
+        android:title="@string/menu_outcome"/>
+
+    <item
+        android:id="@+id/menuProfile"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="@string/menu_profile"/>
+
+</menu>
