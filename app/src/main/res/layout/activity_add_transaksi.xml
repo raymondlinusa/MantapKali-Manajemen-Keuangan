@@ -30,13 +30,21 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:orientation="horizontal">
-        <androidx.appcompat.widget.AppCompatToggleButton
+<!--        <androidx.appcompat.widget.AppCompatToggleButton-->
+<!--            android:id="@+id/btnDompet"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textOff="@string/add_transaksi_dompet"-->
+<!--            />-->
+        <Spinner
             android:id="@+id/btnDompet"
+            android:padding="20dp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textOff="@string/add_transaksi_dompet"
             />
+
         <androidx.appcompat.widget.AppCompatToggleButton
             android:id="@+id/btnTanggal"
             android:layout_width="0dp"
