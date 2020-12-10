@@ -39,7 +39,7 @@ public class AddTransaksiActivity extends Activity {
         int widthPixels = displayMetrics.widthPixels;
         int heightPixels = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (widthPixels*.8),(int) (heightPixels*.7));
+        getWindow().setLayout((int) (widthPixels*.8),(int) (heightPixels*.4));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;

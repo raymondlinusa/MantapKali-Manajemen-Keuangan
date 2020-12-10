@@ -29,6 +29,7 @@
     <string name="profile_edit_akun">Edit Akun</string>
     <string name="profile_setting">Setting</string>
     <string name="profile_about">About</string>
+    <string name="profile_aboutdesc">buatan kelompok MantapKali</string>
 
     <string name="add_transaksi">Add Record</string>
     <string name="add_transaksi_tanggal">11 DEC 2020</string>

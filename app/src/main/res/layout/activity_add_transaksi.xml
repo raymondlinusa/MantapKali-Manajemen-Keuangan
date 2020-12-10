@@ -19,12 +19,16 @@
         android:id="@+id/btnJenisTransaksi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:textOff="@string/add_transaksi_in"
         android:textOn="@string/add_transaksi_out"
         />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="horizontal">
         <androidx.appcompat.widget.AppCompatToggleButton
             android:id="@+id/btnDompet"

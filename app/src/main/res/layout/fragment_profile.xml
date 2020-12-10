@@ -66,6 +66,7 @@
 
         android:text="@string/profile_edit_akun"
         android:textSize="20dp"
+        android:clickable="true"
 
         android:background="@color/light"
         android:elevation="100dp"
@@ -86,6 +87,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:clickable="true"
 
         android:text="@string/profile_setting"
         android:textSize="20dp"
@@ -111,7 +113,25 @@
         android:text="@string/profile_about"
         android:textSize="20dp"
         app:drawableLeftCompat="@drawable/ic_baseline_info_24"
-        app:drawableRightCompat="@drawable/ic_baseline_arrow_forward_ios_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="368dp"
+        android:background="@color/light"
+
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="25dp"
+        android:paddingRight="10dp"
+
+        android:text="@string/profile_aboutdesc"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
