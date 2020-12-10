@@ -17,4 +17,8 @@
     <color name="gray">#FF8395A7</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+
+    <color name="navigationBar">#ffffff</color>
+    <color name="PressedBtn">#00b80f</color>
+    <color name="unPressedBtn">#4d00b3</color>
 </resources>

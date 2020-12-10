@@ -25,4 +25,10 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="Income">Income</string>
+    <string name="Outcome">Outcome</string>
+    <string name="AddNote">Add Note</string>
 </resources>
