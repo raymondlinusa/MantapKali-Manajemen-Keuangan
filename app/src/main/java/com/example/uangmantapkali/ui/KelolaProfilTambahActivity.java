@@ -17,6 +17,7 @@ import com.example.uangmantapkali.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -57,25 +58,19 @@ public class KelolaProfilTambahActivity extends AppCompatActivity {
 
         save.setOnClickListener(v -> {
             Map<String, Object> docData = new HashMap<>();
-            docData.put("nama", nama.getText());
+            docData.put("nama", nama.getText().toString());
+
             db.collection("users")
                     .document(mAuth.getUid())
                     .collection("profile")
-                    .document().set(docData)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(KelolaProfilTambahActivity.this, "Profil berhasil didaftarkan",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+                    .add(docData)
+                    .addOnSuccessListener(documentReference -> {
+                        Toast.makeText(KelolaProfilTambahActivity.this, "Profil berhasil didaftarkan.",
+                                Toast.LENGTH_SHORT).show();
                     })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(KelolaProfilTambahActivity.this, "ERROR" + e.toString(),
-                                    Toast.LENGTH_SHORT).show();
-                            Log.d("TAG", e.toString());
-                        }
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(KelolaProfilTambahActivity.this, "Profil gagal didaftarkan.",
+                                Toast.LENGTH_SHORT).show();
                     });
             finish();
         });

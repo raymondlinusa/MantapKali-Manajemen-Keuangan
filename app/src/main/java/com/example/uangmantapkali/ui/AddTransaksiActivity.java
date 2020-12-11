@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,27 +17,35 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.uangmantapkali.R;
+import com.example.uangmantapkali.ui.adapters.ProfileListAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class AddTransaksiActivity extends Activity {
+    private static final String TAG = "AddTransaksiActivity";
     private Spinner btnDompet;
     private ToggleButton btnJenisTransaksi, btnTanggal;
     private EditText deskripsi, harga;
     private Button cancel, save;
 
-    private String[] dompetList = {
-            "dompet 1",
-            "dompet 2",
-            "dompet 3",
-            "dompet 4",
-            "dompet 5",
-            "dan seterusnya"
-    };
+    private List<String> dompetList = new ArrayList<>();
 
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
 
@@ -44,6 +53,9 @@ public class AddTransaksiActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaksi);
+
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -66,8 +78,26 @@ public class AddTransaksiActivity extends Activity {
         cancel = findViewById(R.id.btnCancel);
         save = findViewById(R.id.btnSave);
 
+        dompetList.clear();
+        db.collection("users")
+                .document(mAuth.getUid())
+                .collection("profile")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData().get("nama").toString());
+                                dompetList.add(document.getData().get("nama").toString());
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, dompetList);
         adapter.setDropDownViewResource(R.layout.padding_spinner);
         btnDompet.setAdapter(adapter);
