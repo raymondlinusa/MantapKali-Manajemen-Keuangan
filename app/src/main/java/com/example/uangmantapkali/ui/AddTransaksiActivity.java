@@ -43,7 +43,7 @@ public class AddTransaksiActivity extends Activity {
     private Button cancel, save;
 
     private List<String> dompetList = new ArrayList<>();
-
+    private ArrayAdapter<String> adapter;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     Calendar myCalendar;
@@ -90,21 +90,22 @@ public class AddTransaksiActivity extends Activity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData().get("nama").toString());
                                 dompetList.add(document.getData().get("nama").toString());
+
                             }
+                            adapter = new ArrayAdapter<>(AddTransaksiActivity.this,
+                                    android.R.layout.simple_spinner_item, dompetList);
+                            adapter.setDropDownViewResource(R.layout.padding_spinner);
+                            btnDompet.setAdapter(adapter);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, dompetList);
-        adapter.setDropDownViewResource(R.layout.padding_spinner);
-        btnDompet.setAdapter(adapter);
+
         btnDompet.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(AddTransaksiActivity.this, "Selected "+ adapter.getItem(i), Toast.LENGTH_SHORT).show();
             }
 
             @Override
