@@ -1,18 +1,12 @@
 package com.example.uangmantapkali.ui;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.ui.AppBarConfiguration;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.uangmantapkali.R;
 import com.example.uangmantapkali.ui.fragment.homeFragment;
@@ -26,7 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
 
-    //    private Button logout;
     private BottomNavigationView bottomNavigationView;
     private FloatingActionButton floatingActionButton;
 
@@ -34,54 +27,56 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private SharedPreferences session;
 
-    private AppBarConfiguration mAppBarConfiguration;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        mAuth = FirebaseAuth.getInstance();
+        session = getSharedPreferences("user", Context.MODE_PRIVATE);
+
         bottomNavigationView = findViewById(R.id.bottomNavBar);
         floatingActionButton = findViewById(R.id.fabTransaksi);
         bottomNavigationView.setBackgroundColor(0);
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AddTransaksiActivity.class);
-                startActivity(intent);
-            }
+        floatingActionButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), AddTransaksiActivity.class);
+            startActivity(intent);
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment(HomeActivity.this)).commit();
         bottomMenu();
     }
 
     private void bottomMenu() {
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @SuppressLint("NonConstantResourceId")
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment = null;
-                switch (item.getItemId()){
-                    case R.id.menuHome:
-                        fragment = new homeFragment();
-                        break;
-                    case R.id.menuIncome:
-                        fragment = new pemasukanFragment();
-                        break;
-                    case R.id.menuOutcome:
-                        fragment = new pengeluaranFragment();
-                        break;
-                    case R.id.menuProfile:
-                        fragment = new profileFragment();
-                        break;
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
-                return true;
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            Fragment fragment = null;
+            switch (item.getItemId()){
+                case R.id.menuHome:
+                    fragment = new homeFragment(HomeActivity.this);
+                    break;
+                case R.id.menuIncome:
+                    fragment = new pemasukanFragment(HomeActivity.this);
+                    break;
+                case R.id.menuOutcome:
+                    fragment = new pengeluaranFragment(HomeActivity.this);
+                    break;
+                case R.id.menuProfile:
+                    fragment = new profileFragment(HomeActivity.this);
+                    break;
             }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+            return true;
         });
-
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mAuth.getCurrentUser() == null) {
+            finish();
+            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
 }

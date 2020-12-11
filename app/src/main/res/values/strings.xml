@@ -40,5 +40,7 @@
     <string name="add_transaksi_save">SAVE</string>
     <string name="add_transaksi_in">Pemasukan</string>
     <string name="add_transaksi_out">Pengeluaran</string>
+    <string name="kelola_profil">Kelola Profil</string>
+    <string name="tambah_profil">Tambah Profil</string>
 
 </resources>

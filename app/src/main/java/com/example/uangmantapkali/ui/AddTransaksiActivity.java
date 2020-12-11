@@ -1,7 +1,5 @@
 package com.example.uangmantapkali.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -86,38 +84,26 @@ public class AddTransaksiActivity extends Activity {
         });
 
         myCalendar = Calendar.getInstance();
-        date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        date = (view, year, monthOfYear, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-                ToggleButton tanggal = findViewById(R.id.btnTanggal);
-                String myFormat = "dd MMM yyyy";
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
-                tanggal.setText(sdf.format(myCalendar.getTime()));
-            }
+            ToggleButton tanggal = findViewById(R.id.btnTanggal);
+            String myFormat = "dd MMM yyyy";
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+            tanggal.setText(sdf.format(myCalendar.getTime()));
         };
 
-        btnTanggal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(AddTransaksiActivity.this, date,
-                        myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-                btnTanggal.setChecked(false);
-            }
+        btnTanggal.setOnClickListener(v -> {
+            new DatePickerDialog(AddTransaksiActivity.this, date,
+                    myCalendar.get(Calendar.YEAR),
+                    myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            btnTanggal.setChecked(false);
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        cancel.setOnClickListener(view -> finish());
 
     }
 }

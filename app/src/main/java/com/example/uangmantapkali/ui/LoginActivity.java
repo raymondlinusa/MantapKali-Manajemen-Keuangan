@@ -91,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                                         SharedPreferences.Editor edit = session.edit();
                                         edit.clear();
                                         edit.putString("name", user1.getName());
+                                        edit.putString("email", user.getEmail());
                                         edit.apply();
 
                                         finish();

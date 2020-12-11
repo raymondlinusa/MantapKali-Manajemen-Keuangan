@@ -20,13 +20,13 @@
     tools:context=".ui.fragment.profileFragment">
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_lblue"
         android:elevation="10dp"
-        android:gravity="center"
         android:text="@string/menu_profile"
-        android:textSize="40dp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,74 +35,96 @@
         android:id="@+id/txtUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
-        android:text="user"
-        android:textSize="30dp"
+        android:layout_marginTop="16dp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/txtUserEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:text="user@email.com"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUser" />
 
     <TextView
         android:id="@+id/txtEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:layout_marginTop="168dp"
-
-        android:drawablePadding="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-
-        android:text="@string/profile_edit_akun"
-        android:textSize="20dp"
-        android:clickable="true"
-
+        android:layout_marginTop="50dp"
         android:background="@color/light"
+
+        android:clickable="true"
+        android:drawablePadding="10dp"
         android:elevation="100dp"
+
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+
+        android:paddingRight="10dp"
+        android:text="@string/profile_edit_akun"
+        android:textSize="20sp"
+        app:drawableLeftCompat="@drawable/ic_baseline_edit_24"
+        app:drawableRightCompat="@drawable/ic_baseline_arrow_forward_ios_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:drawableRightCompat="@drawable/ic_baseline_arrow_forward_ios_24"
-        app:drawableLeftCompat="@drawable/ic_baseline_edit_24" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUserEmail" />
 
     <TextView
         android:id="@+id/txtSetting"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="25dp"
         android:background="@color/light"
 
+        android:clickable="true"
         android:drawablePadding="10dp"
+        android:focusable="true"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:clickable="true"
 
+        android:paddingRight="10dp"
         android:text="@string/profile_setting"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:drawableLeftCompat="@drawable/ic_baseline_settings_24"
         app:drawableRightCompat="@drawable/ic_baseline_arrow_forward_ios_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEdit" />
+
+    <TextView
+        android:id="@+id/txtLogout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/light"
+
+        android:clickable="true"
+        android:drawablePadding="10dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+
+        android:paddingRight="10dp"
+        android:text="@string/logout"
+        android:textSize="20sp"
+        app:drawableLeftCompat="@drawable/ic_logout"
+        app:drawableRightCompat="@drawable/ic_baseline_arrow_forward_ios_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSetting" />
 
     <TextView
         android:id="@+id/txtAbout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="25dp"
         android:background="@color/light"
 
         android:drawablePadding="10dp"
@@ -111,31 +133,30 @@
         android:paddingRight="10dp"
 
         android:text="@string/profile_about"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:drawableLeftCompat="@drawable/ic_baseline_info_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtLogout" />
 
     <TextView
         android:id="@+id/about"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="368dp"
         android:background="@color/light"
 
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
-        android:paddingLeft="25dp"
-        android:paddingRight="10dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="10dp"
 
         android:text="@string/profile_aboutdesc"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAbout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
